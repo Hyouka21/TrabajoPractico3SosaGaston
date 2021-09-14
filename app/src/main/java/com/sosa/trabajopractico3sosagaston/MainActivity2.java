@@ -26,12 +26,12 @@ public class MainActivity2 extends AppCompatActivity {
         inicializar();
         ivFoto.setImageResource(p.getIdFoto());
         titulo.setText(p.getTitulo());
-        detalle.setText("Descripcion \n"+p.getDescripcion());
-        anio.setText("Estreno \n"+p.getAnioEstreno()+"");
-        duracion.setText("Duracion \n"+p.getDuracion()+" minutos");
-        genero.setText("Genero \n"+p.getGenero());
-        actores.setText("Actores \n"+p.getActores());
-        director.setText("Director \n"+p.getDirector());
+        detalle.setText(("Descripcion \n"+p.getDescripcion()));
+        anio.setText(("Estreno \n"+p.getAnioEstreno()+""));
+        duracion.setText(("Duracion \n"+p.getDuracion()+" minutos"));
+        genero.setText(("Genero \n"+p.getGenero()));
+        actores.setText(("Actores \n"+p.getActores()));
+        director.setText(("Director \n"+p.getDirector()));
     }
     public void inicializar(){
         ivFoto = findViewById(R.id.ImagenDetalle);
