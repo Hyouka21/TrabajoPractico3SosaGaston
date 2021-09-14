@@ -2,6 +2,7 @@ package com.sosa.trabajopractico3sosagaston.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,9 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.MiView
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MainActivity2.class);
-                intent.putExtra("id", p.getId());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("pelicula",p);
+                intent.putExtra("bundle", bundle);
                 context.startActivity(intent);
             }
         });

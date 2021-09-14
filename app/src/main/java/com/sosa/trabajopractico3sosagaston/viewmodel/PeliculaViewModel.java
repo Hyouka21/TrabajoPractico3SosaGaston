@@ -1,17 +1,21 @@
 package com.sosa.trabajopractico3sosagaston.viewmodel;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.sosa.trabajopractico3sosagaston.R;
 import com.sosa.trabajopractico3sosagaston.models.Pelicula;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class PeliculaViewModel extends ViewModel {
-    ArrayList<Pelicula> lista;
+    private MutableLiveData<ArrayList<Pelicula>> peliculas;
+    private ArrayList<Pelicula> lista;
     public PeliculaViewModel() {
-         lista = new ArrayList<Pelicula>();
+        lista = new ArrayList<Pelicula>();
+        peliculas = new MutableLiveData<>();
         lista.add(new Pelicula(1,"Matrix",	1999,"Keanu Reeves\n Laurence Fishburne\n Carrie-Anne Moss",220,"Ciencia Ficcion",
                 "Hermanas Wachowski", "Thomas Anderson (Keanu Reeves) es programador informático de día y un hacker llamado Neo de noche. Lleva toda su vida intuyendo que hay algo más, que hay algo que falla y esa duda se ve reafirmada con un mensaje recibido en su ordenador: «Matrix te posee». Así, Neo comienza la búsqueda desesperada de una persona de la que solo ha oído hablar: otro hacker llamado Morfeo (Laurence Fishburne), alguien que puede darle la respuesta a las preguntas que persigue: ¿qué es Matrix? y ¿por qué lo posee?", R.drawable.matrix1));
         lista.add(new Pelicula(2,"Interstellar",	2014,"Matthew McConaughey\n Anne Hathaway\n Matt Damon",190,"Ciencia Ficcion",
@@ -20,18 +24,16 @@ public class PeliculaViewModel extends ViewModel {
                 "Christopher Nolan", "Dom Cobb es un ladrón con una extraña habilidad para entrar a los sueños de la gente y robarles los secretos de sus subconscientes. Su habilidad lo ha vuelto muy popular en el mundo del espionaje corporativo, pero ha tenido un gran costo en la gente que ama", R.drawable.origen1));
         lista.add(new Pelicula(4,"Prometeo",	2012,"Noomi Rapace\n Michael Fassbender\n Charlize Theron",220,"Ciencia Ficcion",
                 "Ridley Scott", "Una pista sobre los orígenes de la humanidad lleva a un grupo de exploradores al espacio exterior, donde deben librar una terrible batalla para salvar el futuro de la raza humana.", R.drawable.prometeo));
-
+        peliculas.setValue(lista);
     }
-    public ArrayList<Pelicula> getPeliculas() {
-        if (lista == null) {
-            lista = new ArrayList<>();
+    public  LiveData<ArrayList<Pelicula>> getPeliculas() {
+        if (peliculas == null) {
+            peliculas = new MutableLiveData<>();
         }
-        return lista;
+        return peliculas;
     }
 
-    public void setPeliculas(ArrayList<Pelicula> listas) {
-        this.lista = listas;
-    }
+
 
     public Pelicula obtenerXId(int id) {
         Pelicula peli = null;

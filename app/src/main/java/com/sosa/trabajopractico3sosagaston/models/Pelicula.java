@@ -1,6 +1,8 @@
 package com.sosa.trabajopractico3sosagaston.models;
 
-public class Pelicula {
+import java.io.Serializable;
+
+public class Pelicula implements Serializable {
     private int id;
     private String titulo;
     private int anioEstreno;

@@ -1,6 +1,8 @@
 package com.sosa.trabajopractico3sosagaston;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,15 +22,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pViewModel = new PeliculaViewModel();
+        pViewModel = new ViewModelProvider(this).get(PeliculaViewModel.class);
         RVPeliculas = findViewById(R.id.RVPelicula);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
                 this,
                 LinearLayoutManager.VERTICAL,
                 false
         );
-        RVPeliculas.setLayoutManager(linearLayoutManager);
-        peliculaAdapter = new PeliculaAdapter( pViewModel.getPeliculas(),this,getLayoutInflater());
-        RVPeliculas.setAdapter(peliculaAdapter);
+        pViewModel.getPeliculas().observe(this, new Observer<ArrayList<Pelicula>>() {
+            @Override
+            public void onChanged(ArrayList<Pelicula> peliculas) {
+                RVPeliculas.setLayoutManager(linearLayoutManager);
+                peliculaAdapter = new PeliculaAdapter( peliculas,getApplicationContext(),getLayoutInflater());
+                RVPeliculas.setAdapter(peliculaAdapter);
+            }
+        });
+
     }
 }

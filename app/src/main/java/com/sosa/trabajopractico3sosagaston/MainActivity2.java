@@ -7,22 +7,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sosa.trabajopractico3sosagaston.models.Pelicula;
-import com.sosa.trabajopractico3sosagaston.viewmodel.PeliculaViewModel;
 
-import java.util.ArrayList;
+
+
 
 public class MainActivity2 extends AppCompatActivity {
-    private PeliculaViewModel pViewModel;
+
     private ImageView ivFoto;
     private TextView titulo,detalle,anio,duracion,genero,actores,director;
-    private int idPelicula;
+    private Pelicula p;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        pViewModel = new PeliculaViewModel();
-        idPelicula = getIntent().getExtras().getInt("id");
-        Pelicula p = pViewModel.obtenerXId(idPelicula);
+
+        p = (Pelicula) getIntent().getExtras().getBundle("bundle").getSerializable("pelicula");
+
         inicializar();
         ivFoto.setImageResource(p.getIdFoto());
         titulo.setText(p.getTitulo());
